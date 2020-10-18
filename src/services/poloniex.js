@@ -47,7 +47,7 @@ const handleErrors = (response) => {
  * Get coins informations
  * @returns {object} Coins information object
  */
-const getCoins = () =>
+const getCoins = async () =>
   fetch(`${poloniexHttp}?command=returnCurrencies`)
     .then(handleErrors)
     .then((response) => response.json())
