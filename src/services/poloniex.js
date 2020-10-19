@@ -1,6 +1,9 @@
 /** Poloniex API Service */
 
 import { w3cwebsocket as Websocket } from 'websocket';
+import arraySort from '../helpers/sort';
+
+/** Helpers */
 
 /** Poloniex API Endpoints */
 const poloniexWebsocket = 'wss://api2.poloniex.com';
@@ -47,7 +50,7 @@ const handleErrors = (response) => {
  * Get coins informations
  * @returns {object} Coins information object
  */
-const getCoins = () =>
+const getCoins = async () =>
   fetch(`${poloniexHttp}?command=returnCurrencies`)
     .then(handleErrors)
     .then((response) => response.json())
@@ -62,23 +65,7 @@ const getCoinsPairs = async () =>
   fetch(`${poloniexHttp}?command=returnTicker`)
     .then(handleErrors)
     .then((response) => response.json())
-    .then((coinsData) =>
-      // Get coins pairs volumes
-      fetch(`${poloniexHttp}?command=return24hVolume`)
-        .then(handleErrors)
-        .then((response) => response.json())
-        .then((volumeData) => {
-          // Add volumes to coins pairs
-          const coins = coinsData;
-          Object.keys(coins).forEach((coin) => {
-            coinsData[coin].volumes = volumeData[coin];
-          });
-          // Return coins pairs with volumes
-
-          return coins;
-        })
-        .catch((error) => ({ error }))
-    )
+    .then((pairsData) => pairsData)
     .catch((error) => ({ error }));
 
 export { subscribe, getCoins, getCoinsPairs };
