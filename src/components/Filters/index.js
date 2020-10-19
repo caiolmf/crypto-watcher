@@ -1,12 +1,8 @@
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import { pairsUpdate } from '../../actions/pairsActions';
-
-/** Filters functions */
-const filtersFunctions = {
-  rank: (pairs, min, max) => pairs.filter((pair) => pair.rank >= min && pair.rank <= max),
-};
 
 const renderRangeFields = (filterState, handleInputs) => {
   const fields = Object.keys(filterState);
@@ -46,26 +42,34 @@ const Filters = ({ pairs, pairsUpdater }) => {
 
   const handleInputs = (event, type) => {
     const { id, value } = event.target;
-    setFilterState({ ...filterState, [id]: { ...filterState[id], [type]: value } });
+
+    if (id === 'query') return setFilterState({ ...filterState, query: value });
+
+    return setFilterState({ ...filterState, [id]: { ...filterState[id], [type]: value } });
   };
 
   const handleFilters = () => {
     let filteredResult = pairs;
 
     Object.keys(filterState).forEach((filter) => {
-      if (Number(filterState[filter].min) > 0) {
+      if (filter === 'query') {
+        filteredResult = filteredResult.filter((result) =>
+          result.pair.includes(filterState[filter].toUpperCase())
+        );
+      }
+      if (filter !== 'query' && Number(filterState[filter].min) > 0) {
         filteredResult = filteredResult.filter(
           (result) => Number(result[filter]) >= Number(filterState[filter].min)
         );
       }
-      if (Number(filterState[filter].max) > 0) {
+      if (filter !== 'query' && Number(filterState[filter].max) > 0) {
         filteredResult = filteredResult.filter(
           (result) => Number(result[filter]) <= Number(filterState[filter].min)
         );
       }
     });
 
-    pairsUpdater(filteredResult);
+    return pairsUpdater(filteredResult);
   };
 
   return (
@@ -73,7 +77,13 @@ const Filters = ({ pairs, pairsUpdater }) => {
       <form>
         <label htmlFor="search">
           Search
-          <input type="text" placeholder="Search" />
+          <input
+            type="text"
+            id="query"
+            placeholder="Search"
+            value={filterState.query}
+            onChange={(e) => handleInputs(e, 'query')}
+          />
         </label>
         {renderRangeFields(filterState, handleInputs)}
       </form>
@@ -85,6 +95,26 @@ const Filters = ({ pairs, pairsUpdater }) => {
       </button>
     </div>
   );
+};
+
+Filters.propTypes = {
+  pairs: PropTypes.arrayOf(
+    PropTypes.shape({
+      pair: PropTypes.string.isRequired,
+      rank: PropTypes.number.isRequired,
+      id: PropTypes.number.isRequired,
+      last: PropTypes.string.isRequired,
+      lowestAsk: PropTypes.string.isRequired,
+      highestBid: PropTypes.string.isRequired,
+      percentChange: PropTypes.string.isRequired,
+      baseVolume: PropTypes.string.isRequired,
+      quoteVolume: PropTypes.string.isRequired,
+      isFrozen: PropTypes.string.isRequired,
+      high24hr: PropTypes.string.isRequired,
+      low24hr: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  pairsUpdater: PropTypes.func.isRequired,
 };
 
 const mapStateToProp = (state) => ({
