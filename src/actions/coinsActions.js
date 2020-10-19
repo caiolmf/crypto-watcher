@@ -6,9 +6,6 @@ import { getCoins, getCoinsPairs } from '../services/poloniex';
 export const FETCH_COINS = 'FETCH_COINS';
 export const FETCH_COINS_SUCCESS = 'FETCH_COINS_SUCCESS';
 export const FETCH_COINS_ERROR = 'FETCH_COINS_ERROR';
-export const FETCH_PAIRS = 'FETCH_PAIRS';
-export const PAIRS_PAIRS_SUCCESS = 'PAIRS_PAIRS_SUCCESS';
-export const PAIRS_PAIRS__ERROR = 'PAIRS_PAIRS__ERROR';
 
 /**
  * Coins fetch status action

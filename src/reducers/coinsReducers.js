@@ -1,11 +1,4 @@
-import {
-  FETCH_COINS,
-  FETCH_COINS_SUCCESS,
-  FETCH_COINS_ERROR,
-  FETCH_PAIRS,
-  PAIRS_PAIRS_SUCCESS,
-  PAIRS_PAIRS__ERROR,
-} from '../actions/coinsActions';
+import { FETCH_COINS, FETCH_COINS_SUCCESS, FETCH_COINS_ERROR } from '../actions/coinsActions';
 
 /** Initil states */
 const coinsInitialState = {
@@ -14,13 +7,13 @@ const coinsInitialState = {
   hasErrored: false,
 };
 
-const pairsInitalState = {
-  isFetching: false,
-  pairs: {},
-  hasErrored: false,
-};
-
-export const coinsReducer = (state = coinsInitialState, action) => {
+/**
+ * Change the coins state based on the given action type and the action payload
+ * @param {state} state - Actual state
+ * @param {object} action - Action payload containing bew state information
+ * @returns {object} Returns a object containing the state with modifications applied
+ */
+export default (state = coinsInitialState, action) => {
   switch (action.type) {
     case FETCH_COINS:
       return { ...state, isFetching: action.bool };

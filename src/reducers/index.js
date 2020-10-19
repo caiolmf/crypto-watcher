@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
-import { coinsReducer } from './coinsReducers';
+import pairsReducer from './pairsReducers'
+import coinsReducer from './coinsReducers';
 
 const rootReducer = combineReducers({
+  pairsReducer,
   coinsReducer,
 });
 
