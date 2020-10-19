@@ -1,10 +1,18 @@
-import { FETCH_PAIRS, FETCH_PAIRS_SUCCESS, FETCH_PAIRS_ERROR } from '../actions/pairsActions';
+import {
+  FETCH_PAIRS,
+  FETCH_PAIRS_SUCCESS,
+  FETCH_PAIRS_ERROR,
+  UPDATE_PAIRS,
+} from '../actions/pairsActions';
+
+/** Helpers */
 import arraySort from '../helpers/sort';
 
 /** Initil states */
 const pairsInitialState = {
   isFetching: true,
   pairs: [],
+  filteredPairs: null,
   hasErrored: false,
 };
 
@@ -42,6 +50,11 @@ export default (state = pairsInitialState, action) => {
     case FETCH_PAIRS_ERROR:
       return { ...state, hasErrored: action.error };
 
+    case UPDATE_PAIRS:
+      return {
+        ...state,
+        filteredPairs: action.pairs,
+      };
     default:
       return state;
   }

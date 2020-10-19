@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -8,8 +8,9 @@ import { fetchPairs } from '../../actions/pairsActions';
 /** Used Components */
 import Loader from '../../components/Loader';
 import CoinsRank from '../../components/CoinsRank';
+import Filters from '../../components/Filters';
 
-const App = ({ pairsFetcher, pairsLoading, pairs, coinsFetcher }) => {
+const App = ({ pairsFetcher, pairsLoading, pairs, filteredPairs, coinsFetcher }) => {
   useEffect(() => {
     pairsFetcher();
     coinsFetcher();
@@ -19,7 +20,8 @@ const App = ({ pairsFetcher, pairsLoading, pairs, coinsFetcher }) => {
 
   return (
     <div className="App">
-      <CoinsRank pairs={pairs} />
+      <CoinsRank pairs={filteredPairs || pairs} />
+      <Filters />
     </div>
   );
 };
@@ -27,6 +29,7 @@ const App = ({ pairsFetcher, pairsLoading, pairs, coinsFetcher }) => {
 const mapStateToProp = (state) => ({
   pairsLoading: state.pairsReducer.isFetching,
   pairs: state.pairsReducer.pairs,
+  filteredPairs: state.pairsReducer.filteredPairs,
 });
 
 const mapDispatchToProp = (dispatch) => ({
@@ -38,7 +41,7 @@ export default connect(mapStateToProp, mapDispatchToProp)(App);
 
 App.propTypes = {
   coinsFetcher: PropTypes.func.isRequired,
-  pairs: PropTypes.arrayOf(
+  filteredPairs: PropTypes.arrayOf(
     PropTypes.shape({
       pair: PropTypes.string.isRequired,
       rank: PropTypes.number.isRequired,
