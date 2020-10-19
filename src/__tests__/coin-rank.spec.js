@@ -1,9 +1,9 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import CoinRank from '../../components/CoinsRank';
+import CoinRank from '../components/CoinsRank';
 
-import { MOD_COINS_PAIRS } from '../../__mocks__/coinsPairs';
-import arraySort from '../../helpers/sort';
+import { MOD_COINS_PAIRS } from '../__mocks__/coinsPairs';
+import arraySort from '../helpers/sort';
 
 describe('CoinRank', () => {
   it('should render correctly with no props', () => {

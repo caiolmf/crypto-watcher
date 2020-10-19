@@ -24,7 +24,9 @@
     "websocket": "^1.0.32"
   },
   "jest": {
-    "snapshotSerializers": ["enzyme-to-json/serializer"]
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   },
   "scripts": {
     "start": "react-scripts start",
@@ -59,6 +61,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.21.4",
     "jest": "^24.9.0",
-    "prettier": "^2.1.2"
+    "prettier": "^2.1.2",
+    "redux-mock-store": "^1.5.4"
   }
 }

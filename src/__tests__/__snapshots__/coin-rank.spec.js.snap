@@ -7,7 +7,7 @@ exports[`CoinRank should render correctly with no props 1`] = `
 `;
 
 exports[`CoinRank should render pair list with 10 items with given props 1`] = `
-<CoinsList
+<CoinsRank
   pairs={
     Array [
       Object {
@@ -1277,11 +1277,11 @@ exports[`CoinRank should render pair list with 10 items with given props 1`] = `
       </styled.div>
     </div>
   </styled.div>
-</CoinsList>
+</CoinsRank>
 `;
 
 exports[`CoinRank should render pair rank and the rank must be in asc order 1`] = `
-<CoinsList
+<CoinsRank
   pairs={
     Array [
       Object {
@@ -2551,5 +2551,5 @@ exports[`CoinRank should render pair rank and the rank must be in asc order 1`] 
       </styled.div>
     </div>
   </styled.div>
-</CoinsList>
+</CoinsRank>
 `;
