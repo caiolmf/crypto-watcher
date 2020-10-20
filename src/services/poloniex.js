@@ -68,4 +68,19 @@ const getCoinsPairs = async () =>
     .then((pairsData) => pairsData)
     .catch((error) => ({ error }));
 
-export { subscribe, getCoins, getCoinsPairs };
+/**
+ * Get chart data
+ * @returns {object} Chart tick data
+ */
+const getChartData = async (pair, startTime, selectedInterval, unixDateNow) =>
+  fetch(
+    `${poloniexHttp}?command=returnChartData&currencyPair=${pair}&start=${
+      unixDateNow - startTime
+    }&end=${unixDateNow}&period=${selectedInterval}`
+  )
+    .then(handleErrors)
+    .then((response) => response.json())
+    .then((chartData) => chartData)
+    .catch((error) => ({ error }));
+
+export { subscribe, getCoins, getCoinsPairs, getChartData };
