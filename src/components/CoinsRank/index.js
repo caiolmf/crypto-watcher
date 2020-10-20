@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 
 /** Helpers */
 import arraySort from '../../helpers/sort';
-import { MOD_COINS_PAIRS } from '../../__mocks__/coinsPairs';
 
 /** Styled Components */
 import { RankContainer, Pair, Grid, HeaderLabel, Label, RankControllers } from './styledComponents';
@@ -40,17 +39,15 @@ const renderPair = (pair, history) => (
   </Pair>
 );
 
-/** Handle the rank sorting */
-
-const CoinsList = ({ pairs }) => {
+const CoinsRank = ({ pairs }) => {
   const [rankState, setRankState] = useState([]);
   const [sortState, setSortState] = useState({ sort: 'rank', order: 'asc' });
   const [pageState, setPageState] = useState({ initItem: 0, endItem: 10 });
   const history = useHistory();
 
   useEffect(() => {
-    setRankState(MOD_COINS_PAIRS);
-  }, []);
+    setRankState(pairs);
+  }, [pairs]);
 
   const handleSortOrder = (sort) => {
     const order = sortState.order === 'asc' ? 'desc' : 'asc';
@@ -110,9 +107,9 @@ const CoinsList = ({ pairs }) => {
   );
 };
 
-export default CoinsList;
+export default CoinsRank;
 
-CoinsList.propTypes = {
+CoinsRank.propTypes = {
   pairs: PropTypes.arrayOf(
     PropTypes.shape({
       pair: PropTypes.string.isRequired,

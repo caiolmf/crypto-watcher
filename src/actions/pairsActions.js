@@ -6,6 +6,7 @@ import { getCoinsPairs } from '../services/poloniex';
 export const FETCH_PAIRS = 'FETCH_PAIRS';
 export const FETCH_PAIRS_SUCCESS = 'FETCH_PAIRS_SUCCESS';
 export const FETCH_PAIRS_ERROR = 'FETCH_PAIRS__ERROR';
+export const UPDATE_PAIRS = 'UPDATE_PAIRS';
 
 /**
  * Coins Pairs fetch status action
@@ -47,3 +48,12 @@ export const fetchPairs = () => (dispatch) => {
     .then(() => dispatch(pairsFetching(false)))
     .catch((error) => dispatch(pairsFetchingErrored(error)));
 };
+
+/**
+ * Coins pairs update action
+ * @param {object} pairs - Object containing pairs informations
+ */
+export const pairsUpdate = (pairs) => ({
+  type: UPDATE_PAIRS,
+  pairs,
+});

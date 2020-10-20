@@ -1,6 +1,6 @@
-import { getCoins, getCoinsPairs } from '../../services/poloniex';
-import COINS from '../../__mocks__/currencies';
-import { COINS_PAIRS } from '../../__mocks__/coinsPairs';
+import { getCoins, getCoinsPairs } from '../services/poloniex';
+import COINS from '../__mocks__/currencies';
+import { COINS_PAIRS } from '../__mocks__/coinsPairs';
 
 describe('Poloniex API getCoins function', () => {
   beforeEach(() => {
