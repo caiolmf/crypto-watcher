@@ -15,6 +15,7 @@
     "jsx-a11y/href-no-hash": ["off"],
     "no-param-reassign": ["off"],
     "no-throw-literal": ["off"],
+    "react/prop-types": ["off"],
     "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
     "max-len": [
       "warn",

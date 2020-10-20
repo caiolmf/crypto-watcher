@@ -6,17 +6,18 @@ export const RankContainer = styled.div`
   align-tems: center;
   flex-flow: column;
   padding: 15px 30px;
+  width: 80%;
 `;
 
 export const Pair = styled.div`
   width: 100%;
-  height: 80px;
+  height: 60px;
   // background-color: black;
 `;
 
 export const Grid = styled.div`
   display: grid;
-  grid-template-columns: 5% 10% 10% 10% 10% 10% 10% 10% 20%;
+  grid-template-columns: 5% 10% 12% 12% 12% 12% 12% 12%;
 `;
 
 export const Label = styled.div`
@@ -32,6 +33,7 @@ export const Label = styled.div`
 export const HeaderLabel = styled(Label)`
   text-align: left;
   font-weight: 800;
+  margin-bottom: 20px;
 `;
 
 export const RankControllers = styled.div`

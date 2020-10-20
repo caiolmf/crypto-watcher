@@ -1,10 +1,11 @@
 import React from 'react';
+import { LoaderContainer } from './styledComponents';
 
 const Loader = () => {
   return (
-    <div>
+    <LoaderContainer>
       <h1>Loading</h1>
-    </div>
+    </LoaderContainer>
   );
 };
 
