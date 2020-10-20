@@ -9,6 +9,8 @@ import { fetchPairs } from '../../actions/pairsActions';
 import Loader from '../../components/Loader';
 import CoinsRank from '../../components/CoinsRank';
 import Filters from '../../components/Filters';
+import { Container, RankFilters } from './styledComponents';
+import Header from '../../components/Header';
 
 const App = ({ pairsFetcher, pairsLoading, pairs, filteredPairs, coinsFetcher }) => {
   useEffect(() => {
@@ -20,8 +22,13 @@ const App = ({ pairsFetcher, pairsLoading, pairs, filteredPairs, coinsFetcher })
 
   return (
     <div className="App">
-      <CoinsRank pairs={filteredPairs || pairs} />
-      <Filters />
+      <Header />
+      <Container>
+        <CoinsRank pairs={filteredPairs || pairs} />
+        <RankFilters>
+          <Filters />
+        </RankFilters>
+      </Container>
     </div>
   );
 };

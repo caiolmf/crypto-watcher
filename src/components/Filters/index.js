@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import { pairsUpdate } from '../../actions/pairsActions';
+import { Input, SearchBar, SectionTitle, SmallButton } from '../StyledAssets';
 
 const renderRangeFields = (filterState, handleInputs) => {
   const fields = Object.keys(filterState);
@@ -11,15 +12,15 @@ const renderRangeFields = (filterState, handleInputs) => {
   return fields.map((field) => (
     <div key={field}>
       <label htmlFor="min-range">
-        {field}
-        <input
+        {filterState[field].label}
+        <Input
           type="number"
           id={`${field}`}
           value={filterState[field].min}
           onChange={(e) => handleInputs(e, 'min')}
           placeholder="Min"
         />
-        <input
+        <Input
           type="number"
           id={field}
           value={filterState[field].max}
@@ -34,10 +35,10 @@ const renderRangeFields = (filterState, handleInputs) => {
 const Filters = ({ pairs, pairsUpdater }) => {
   const [filterState, setFilterState] = useState({
     query: '',
-    rank: { min: '', max: '' },
-    percentChange: { min: '', max: '' },
-    baseVolume: { min: '', max: '' },
-    quoteVolume: { min: '', max: '' },
+    rank: { label: 'Rank', min: '', max: '' },
+    percentChange: { label: 'Change (24hrs)', min: '', max: '' },
+    baseVolume: { label: 'Base Volume', min: '', max: '' },
+    quoteVolume: { label: 'Quote Volume', min: '', max: '' },
   });
 
   const handleInputs = (event, type) => {
@@ -74,25 +75,23 @@ const Filters = ({ pairs, pairsUpdater }) => {
 
   return (
     <div>
+      <SectionTitle>Filters</SectionTitle>
       <form>
-        <label htmlFor="search">
-          Search
-          <input
-            type="text"
-            id="query"
-            placeholder="Search"
-            value={filterState.query}
-            onChange={(e) => handleInputs(e, 'query')}
-          />
-        </label>
+        <SearchBar
+          type="text"
+          id="query"
+          placeholder="Search"
+          value={filterState.query}
+          onChange={(e) => handleInputs(e, 'query')}
+        />
         {renderRangeFields(filterState, handleInputs)}
       </form>
-      <button data-testid="filter-btn" type="button" onClick={() => handleFilters()}>
+      <SmallButton data-testid="filter-btn" type="button" onClick={() => handleFilters()}>
         FILTER
-      </button>
-      <button type="button" onClick={() => pairsUpdater(null)}>
+      </SmallButton>
+      <SmallButton type="button" onClick={() => pairsUpdater(null)}>
         RESET
-      </button>
+      </SmallButton>
     </div>
   );
 };

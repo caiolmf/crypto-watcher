@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 /** Helpers */
 import arraySort from '../../helpers/sort';
+import { SmallButton } from '../StyledAssets';
 
 /** Styled Components */
 import { RankContainer, Pair, Grid, HeaderLabel, Label, RankControllers } from './styledComponents';
@@ -17,7 +18,6 @@ const rankHeaders = [
   { label: 'Quote Volume', clicable: 'quoteVolume' },
   { label: 'Highest Bid', clicable: null },
   { label: 'Lower Ask', clicable: null },
-  { label: 'Price (7d)', clicable: null },
 ];
 
 const renderPair = (pair, history) => (
@@ -85,23 +85,23 @@ const CoinsRank = ({ pairs }) => {
         .map((pair) => renderPair(pair, history))}
 
       <RankControllers>
-        <button
+        <SmallButton
           data-testid="prev-page"
           type="button"
           onClick={() => handlePagination('prev')}
           disabled={pageState.endItem === 10}
         >
           PREVIOUS
-        </button>
+        </SmallButton>
         <div>{`${pageState.endItem}/${rankState.length}`}</div>
-        <button
+        <SmallButton
           data-testid="next-page"
           type="button"
           onClick={() => handlePagination('next')}
           disabled={pageState.endItem >= rankState.length}
         >
           NEXT
-        </button>
+        </SmallButton>
       </RankControllers>
     </RankContainer>
   );
