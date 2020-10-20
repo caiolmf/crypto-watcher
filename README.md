@@ -58,6 +58,9 @@ Para executar localmente execute:
 
 `npm run test`
 
+## Documentação
+A documentação básica das funçoes foi gerada utilizando JSDOc e econtra-se disponível no diretório `/out`
+
 ## Desafios econtrados
 O maior desafio foi a implementação dos testes utilizando o enzyme.
 Por estar usando components funcionais e hooks algumas funções do enzyme não retornavam o resultado esperado.
