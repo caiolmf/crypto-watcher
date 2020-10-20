@@ -41,7 +41,7 @@ export const chartDataFetchingErrored = (bool) => ({
  */
 export const fetchChartData = (pair, startTime, selectedInterval, unixDateNow) => (dispatch) => {
   dispatch(chartDataFetching(true));
-  console.log(selectedInterval);
+
   getChartData(pair, startTime, selectedInterval, unixDateNow)
     .then((chartData) => dispatch(chartDataFetchingSuccess(chartData)))
     .then(() => dispatch(chartDataFetching(false)))

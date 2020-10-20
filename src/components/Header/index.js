@@ -6,7 +6,7 @@ import BackIcon from '../../Assets/backIcon.png';
 const Header = ({ visible }) => {
   const [redirect, setRedirect] = useState(false);
 
-  if (redirect) return <Redirect path="/" />;
+  if (redirect) return <Redirect to="/" />;
 
   return (
     <HeaderContainer>
