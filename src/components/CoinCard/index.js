@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 /** Styled components */
 import { Card, CardContent, CardTitle } from './styledComponents';
 
-const CoinCard = ({ coin, coins }) => {
-  if (!coins) return null;
+const CoinCard = ({ coin, coinsData }) => {
+
+  if (!Object.keys(coinsData).length) return <p>Coins info loading...</p>;
 
   return (
     <Card>
@@ -18,23 +19,19 @@ const CoinCard = ({ coin, coins }) => {
         alt="Coin icon"
       /> */}
       <CardTitle>
-        <h1>{coins[coin].name}</h1>
-        <h2>{coins[coin].humanType}</h2>
+        <h1>{coinsData[coin].name}</h1>
+        <h2>{coinsData[coin].humanType}</h2>
       </CardTitle>
       <CardContent>
         <div>
-          <strong>Coin Type:</strong> {coins[coin].currencyType}
+          <strong>Coin Type:</strong> {coinsData[coin].currencyType}
         </div>
         <div>
-          <strong>Fee:</strong> {coins[coin].txFee}
+          <strong>Fee:</strong> {coinsData[coin].txFee}
         </div>
       </CardContent>
     </Card>
   );
 };
 
-const mapStateToProp = (state) => ({
-  coins: state.coinsReducer.coins,
-});
-
-export default connect(mapStateToProp)(CoinCard);
+export default CoinCard;
