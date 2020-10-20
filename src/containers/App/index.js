@@ -12,10 +12,9 @@ import Filters from '../../components/Filters';
 import { Container, RankFilters } from './styledComponents';
 import Header from '../../components/Header';
 
-const App = ({ pairsFetcher, pairsLoading, pairs, filteredPairs, coinsFetcher }) => {
+const App = ({ pairsFetcher, pairsLoading, pairs, filteredPairs }) => {
   useEffect(() => {
     pairsFetcher();
-    coinsFetcher();
   }, []);
 
   if (pairsLoading) return <Loader />;
@@ -41,7 +40,6 @@ const mapStateToProp = (state) => ({
 
 const mapDispatchToProp = (dispatch) => ({
   pairsFetcher: () => dispatch(fetchPairs()),
-  coinsFetcher: () => dispatch(fetchCoins()),
 });
 
 export default connect(mapStateToProp, mapDispatchToProp)(App);
